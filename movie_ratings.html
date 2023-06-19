@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    input {
+        margin-top: 5px;
+        margin-left: 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+    <h1>Movie Ratings</h1>
+    <form>
+        Movie Title <input type="text">
+        <br>
+        Rating (0-10) <input type="number" min="0" max="10">
+        <br>
+        <input type="button" value="Submit" id="submit">
+    </form>
+
+    <h2>Movies</h2>
+    <ul>
+
+    </ul>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script>
+    $("#submit").on("click", function() {
+        const movie = $("input").eq(0).val();
+        const rating = $("input").eq(1).val();
+        if (rating >= 0 && rating <= 10 && movie.length >= 2) {
+            $("ul").append(`<li>${movie} with a rating of ${rating}/10<input type="button" value="Delete" class="deleteButton"></li>`);
+        }
+        else {
+            console.log("Movie could not be added as rating is not between 0-10 or movie title length is less than 2 characters");
+        }
+    });
+    $("ul").on("click", ".deleteButton", function(evt) {
+        $(evt.target).parent().remove();
+    })
+</script>
+</body>
+
+</html>
